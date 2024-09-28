@@ -37,7 +37,7 @@ def split_candidates(candidates, ratios=None):
 
 def get_restart_gen(pop_dir=None):
     if pop_dir is None:
-        pop_dir = r'F:\GA_CSP\File\Structures'
+        pop_dir = r'..\..\file\Structures'
 
     pop_list = os.listdir(pop_dir)
     pop_relaxed_list = []
@@ -52,7 +52,7 @@ def get_restart_gen(pop_dir=None):
 
 def get_restart_id(pop_dir=None):
     if pop_dir is None:
-        pop_dir = r'F:\GA_CSP\File\Structures'
+        pop_dir = r'..\..\file\Structures'
 
     restart_gen = get_restart_gen(pop_dir)
     cur_gen_dir = os.path.join(pop_dir, '{}_population'.format(restart_gen + 1))
@@ -87,7 +87,7 @@ def pop_initialization(species, pop_size, min_atoms, max_atoms, fmax=0.05, steps
                     species[1], species[2]]
     pop_data = pd.DataFrame(columns=column_title)
 
-    pop_dir = r'F:\GA_CSP\File\Structures'
+    pop_dir = r'..\..\file\Structures'
     if not os.path.exists(pop_dir):
         os.makedirs(pop_dir)
 
@@ -107,14 +107,14 @@ def pop_initialization(species, pop_size, min_atoms, max_atoms, fmax=0.05, steps
     n = 1  # ID of individual
 
     if seeds is True:
-        seeds_path = r'F:\GA_CSP\File\Seeds'
+        seeds_path = r'..\..\file\Seeds'
         if not os.path.exists(seeds_path):
             os.makedirs(seeds_path)
         if not os.listdir(seeds_path):
             get_seeds_from_mp(species)
 
         # Sort seed information by formation energy per atom
-        seeds_info = pd.read_csv(r'F:\GA_CSP\File\seeds_info.csv')
+        seeds_info = pd.read_csv(r'..\..\file\seeds_info.csv')
         seeds_sorted = seeds_info.sort_values(by='formation_energy_per_atom', ignore_index=True)
 
         seeds_chosen = seeds_sorted[:]  # Add all seed structures.
@@ -151,13 +151,13 @@ def pop_initialization(species, pop_size, min_atoms, max_atoms, fmax=0.05, steps
         n, pop_data, pool = gen_random(0, n, 3, species, min_atoms, max_atoms, ini_pop_dir, pop_data, pool)
 
     # Write population information
-    pop_info_dir = r'F:\GA_CSP\File\Population_info'
+    pop_info_dir = r'..\..\file\Population_info'
     if not os.path.exists(pop_info_dir):
         os.mkdir(pop_info_dir)
 
     pop_data.to_csv(os.path.join(pop_info_dir, '0_pop-info.csv'), index=False)
 
-    pool_path = r'F:\GA_CSP\File\pool.pkl'
+    pool_path = r'..\..\file\pool.pkl'
     with open(pool_path, 'wb') as f:
         pickle.dump(pool, f)
 
@@ -166,11 +166,11 @@ def pop_initialization(species, pop_size, min_atoms, max_atoms, fmax=0.05, steps
 
 def pop_iteration(total_gen_num: int, species, pop_size, min_atoms, max_atoms, crossover_rate, mutation_rate, fmax=0.05, steps=1000, restart=False, type_weight=None):
 
-    pop_info_dir = r'F:\GA_CSP\File\Population_info'
+    pop_info_dir = r'..\..\file\Population_info'
     if not os.path.exists(pop_info_dir):
         os.mkdir(pop_info_dir)
 
-    pop_dir = r'F:\GA_CSP\File\Structures'
+    pop_dir = r'..\..\file\Structures'
     # if not os.path.exists(pop_dir):
     #     os.makedirs(pop_dir)
 
@@ -187,7 +187,7 @@ def pop_iteration(total_gen_num: int, species, pop_size, min_atoms, max_atoms, c
         gen = 1
 
     for cur_gen in range(gen, total_gen_num):
-        pool_path = r'F:\GA_CSP\File\pool.pkl'
+        pool_path = r'..\..\file\pool.pkl'
         if os.path.isfile(pool_path):
             with open(pool_path, 'rb') as f:
                 pool = pickle.load(f)
@@ -266,7 +266,7 @@ def pop_iteration(total_gen_num: int, species, pop_size, min_atoms, max_atoms, c
         # Write population information
         pop_data.to_csv(os.path.join(pop_info_dir, '{}_pop-info.csv'.format(cur_gen)), index=False)
 
-        pool_path = r'F:\GA_CSP\File\pool.pkl'
+        pool_path = r'..\..\file\pool.pkl'
         with open(pool_path, 'wb') as f:
             pickle.dump(pool, f)
 

@@ -10,10 +10,10 @@ from scipy.spatial import ConvexHull
 
 
 def merge_pop_info(path=None):
-    info_dir = r'F:\GA_CSP\File\Population_info'
+    info_dir = r'..\..\file\Population_info'
     filename = 'Population_info.csv'
     if path is None:
-        path = r'F:\GA_CSP\File'
+        path = r'..\..\file'
 
     file_list = os.listdir(info_dir)
     file_relaxed_list = []
@@ -42,7 +42,7 @@ def comp_triangle(composition):
 
 def calc_convex_hull(pop_info=None):
     if pop_info is None:
-        pop_info = pd.read_csv(r'F:\GA_CSP\File\Population_info.csv')
+        pop_info = pd.read_csv(r'..\..\file\Population_info.csv')
 
     pts = np.array(pop_info)
 
@@ -149,16 +149,16 @@ def calc_convex_hull(pop_info=None):
     '''
     pop_info['Ehull'] = Ehull_set
     pop_info = pd.DataFrame(pop_info)
-    pop_info.to_csv(r'F:\GA_CSP\File\pop_info_Ehull.csv', index=False)
+    pop_info.to_csv(r'..\..\file\pop_info_Ehull.csv', index=False)
 
 
 def get_candidates(pop_info=None, criterion='formation_energy_per_atom', cutoff=None):
-    candidates_dir = r'F:\GA_CSP\File\Candidates'
+    candidates_dir = r'..\..\file\Candidates'
     if not os.path.exists(candidates_dir):
         os.mkdir(candidates_dir)
 
     if pop_info is None:
-        pop_info = pd.read_csv(r'F:\GA_CSP\File\pop_info_Ehull.csv')
+        pop_info = pd.read_csv(r'..\..\file\pop_info_Ehull.csv')
 
     if criterion == 'formation_energy_per_atom':
         if cutoff is None:
@@ -184,10 +184,10 @@ def get_candidates(pop_info=None, criterion='formation_energy_per_atom', cutoff=
     for _, row in pop_info.iterrows():
         gen_num = row['ID'].split('-')[0]
         pop_num = row['ID'].split('-')[1]
-        dir_list = os.listdir(os.path.join(r'F:\GA_CSP\File\Structures', f'{gen_num}_population_relaxed'))
+        dir_list = os.listdir(os.path.join(r'..\..\file\Structures', f'{gen_num}_population_relaxed'))
         for dir in dir_list:
             if dir.startswith('{}-{}_'.format(gen_num, pop_num)):
-                shutil.copyfile(os.path.join(r'F:\GA_CSP\File\Structures\{}_population_relaxed'.format(gen_num), dir),
+                shutil.copyfile(os.path.join(r'..\..\file\Structures\{}_population_relaxed'.format(gen_num), dir),
                                 os.path.join(candidates_dir, dir))
 
 

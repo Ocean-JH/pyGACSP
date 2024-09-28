@@ -83,7 +83,7 @@ def get_fitness_score(df_formation, alpha=5):
 
 
 if __name__ == '__main__':
-    file_name = r'F:\GA_CSP\File\example_input.csv'
+    file_name = r'..\..\file\example_input.csv'
 
     form = get_formationenergy(file_name)
 
@@ -91,4 +91,4 @@ if __name__ == '__main__':
 
     df_output = pd.DataFrame(fitness)
 
-    df_output.to_csv(r'F:\GA_CSP\File\output.csv', index=True, index_label="id")
+    df_output.to_csv(r'..\..\file\output.csv', index=True, index_label="id")

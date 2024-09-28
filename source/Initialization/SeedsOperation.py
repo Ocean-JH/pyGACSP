@@ -26,15 +26,15 @@ def get_seeds_from_mp(species, species_types=None, api=None):
         species_types = species_types
 
     if api is None:
-        if os.path.exists(r'F:\GA_CSP\File\API_KEY'):
-            with open(r'F:\GA_CSP\File\API_KEY') as f:
+        if os.path.exists(r'..\..\file\API_KEY'):
+            with open(r'..\..\file\API_KEY') as f:
                 api_key = f.read()
         else:
             raise ValueError('Please provide your API key of Materials Project.')
     else:
         api_key = api
 
-    seeds_path = r'F:\GA_CSP\File\Seeds'
+    seeds_path = r'..\..\file\Seeds'
     if not os.path.exists(seeds_path):
         os.makedirs(seeds_path)
 
@@ -99,11 +99,11 @@ def get_seeds_from_mp(species, species_types=None, api=None):
                                                'is_stable', 'theoretical', 'volume', 'density', 'possible_species',
                                                'decomposes_to', 'deprecated', 'origins', 'warnings', 'last_updated'])
 
-            if not os.path.exists(os.path.join(r'F:\GA_CSP\File', r'seeds_info.csv')):
-                seeds_info.to_csv(os.path.join(r'F:\GA_CSP\File', r'seeds_info.csv'),
+            if not os.path.exists(os.path.join(r'..\..\file', r'seeds_info.csv')):
+                seeds_info.to_csv(os.path.join(r'..\..\file', r'seeds_info.csv'),
                                   mode='a', index=False)
             else:
-                seeds_info.to_csv(os.path.join(r'F:\GA_CSP\File', r'seeds_info.csv'),
+                seeds_info.to_csv(os.path.join(r'..\..\file', r'seeds_info.csv'),
                                   mode='a', index=False, header=False)
 
             # Write structure information
@@ -112,7 +112,7 @@ def get_seeds_from_mp(species, species_types=None, api=None):
                     doc.structure.to(os.path.join(seeds_path, doc.material_id + "_POSCAR"))
 
     # Retrieval symmetry information
-    info = pd.read_csv(r'F:\GA_CSP\File\seeds_info.csv')
+    info = pd.read_csv(r'..\..\file\seeds_info.csv')
     info_symmetry = info['symmetry'].str.split('\'', expand=True)[[1, 3, 4, 5]]
     info_spg = info_symmetry[4].str.split('=', expand=True)[1].str.split(expand=True)[0]
     info_sym = pd.concat([info_symmetry, info_spg], axis=1)
@@ -131,7 +131,7 @@ def get_seeds_from_mp(species, species_types=None, api=None):
 
     info['composition'] = info['composition'].replace(' ', '', regex=True)
 
-    info.to_csv(os.path.join(r'F:\GA_CSP\File', r'seeds_info.csv'), mode='w', index=False)
+    info.to_csv(os.path.join(r'..\..\file', r'seeds_info.csv'), mode='w', index=False)
 
 
 def get_structures_from_seeds(seeds_path=None):
@@ -142,7 +142,7 @@ def get_structures_from_seeds(seeds_path=None):
     :param seeds_path: Path to the seeds file
     """
     if seeds_path is None:
-        seeds_path = r'F:\GA_CSP\File\Seeds'
+        seeds_path = r'..\..\file\Seeds'
 
     if not os.path.exists(seeds_path):
         raise FileNotFoundError('No such path exists, please check it.   {}'.format(seeds_path))
@@ -152,7 +152,7 @@ def get_structures_from_seeds(seeds_path=None):
 
     seeds = os.listdir(seeds_path)
 
-    structure_path = r'F:\GA_CSP\File\Structures\from_seeds'
+    structure_path = r'..\..\file\Structures\from_seeds'
     if not os.path.exists(structure_path):
         os.mkdir(structure_path)
 
@@ -175,7 +175,7 @@ def get_structure_from_seed(species, seed, seeds_path=None):
     :return: The new structure after the perturbation, the corresponding structural information
     """
     if seeds_path is None:
-        seeds_path = r'F:\GA_CSP\File\Seeds'
+        seeds_path = r'..\..\file\Seeds'
 
     if not os.path.exists(seeds_path):
         raise FileNotFoundError('No such path exists, please check it.   {}'.format(seeds_path))
@@ -185,11 +185,11 @@ def get_structure_from_seed(species, seed, seeds_path=None):
     if seed_name not in seeds:
         raise FileNotFoundError('No such seed exists, please check it.   {}'.format(seeds_path))
 
-    # structure_path = r'F:\GA_CSP\File\Structures\from_seed'
+    # structure_path = r'..\..\file\Structures\from_seed'
     # if not os.path.exists(structure_path):
     #     os.mkdir(structure_path)
 
-    seeds_data = pd.read_csv(os.path.join(r'F:\GA_CSP\File', r'seeds_info.csv'))
+    seeds_data = pd.read_csv(os.path.join(r'..\..\file', r'seeds_info.csv'))
     seed_data = seeds_data.query("material_id == '{}'".format(seed))
     crystal = pyxtal()
     crystal.from_seed(os.path.join(seeds_path, seed_name))

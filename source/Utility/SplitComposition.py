@@ -18,6 +18,6 @@ def splitcomposition(species, info):
 
 
 if __name__ == '__main__':
-    info = pd.read_csv(r'F:\GA_CSP\File\seeds_info.csv')
+    info = pd.read_csv(r'..\..\file\seeds_info.csv')
     splitcomp = splitcomposition(['Ge', 'Sb', 'Te'], info)
     print(splitcomp)

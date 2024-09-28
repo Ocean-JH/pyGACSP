@@ -106,21 +106,21 @@ if __name__ == '__main__':
     """
             Prepare training data from ab initio calculation.
     """
-    # dataset_dir = r"F:\Research_Files\Structure_Search\USPEX\30_30_pop\DataAnalysis\30_30_SCF"
-    # dataset_dir = r"F:\Dataset\ElementSubstitution"
+    # dataset_dir = r"USPEX\30_30_pop\DataAnalysis\30_30_SCF"
+    # dataset_dir = r"Dataset\ElementSubstitution"
     # calc_dirs = get_calc_dir(dataset_dir)
-    # with open(r'F:\GA_CSP\File\calc_dir.pkl', 'wb') as f:
+    # with open(r'..\..\file\calc_dir.pkl', 'wb') as f:
     #     pickle.dump(calc_dirs, f)
 
-    # with open(r'F:\GA_CSP\File\calc_dir.pkl', 'rb') as f:
+    # with open(r'..\..\file\calc_dir.pkl', 'rb') as f:
     #     calc_dirs = pickle.load(f)
     #
     # structures, energies_per_atom, forces, stresses = prepare_data(calc_dirs)
     # dataset = (structures, energies_per_atom, forces, stresses)
-    # with open(r'F:\GA_CSP\File\elesub_dataset.pkl', 'wb') as f:
+    # with open(r'..\..\file\elesub_dataset.pkl', 'wb') as f:
     #     pickle.dump(dataset, f)
 
-    with open(r'F:\GA_CSP\File\elesub_dataset.pkl', 'rb') as f:
+    with open(r'..\..\file\elesub_dataset.pkl', 'rb') as f:
         dataset = pickle.load(f)
 
     structures, energies_per_atom, forces, stresses = dataset
@@ -166,7 +166,7 @@ if __name__ == '__main__':
     """
             Start training.
     """
-    trainer.train(train_loader, val_loader, test_loader, save_dir=r'F:\GA_CSP\File\model')
+    trainer.train(train_loader, val_loader, test_loader, save_dir=r'..\..\file\model')
 
     model = trainer.model
     best_model = trainer.best_model  # best model based on validation energy MAE

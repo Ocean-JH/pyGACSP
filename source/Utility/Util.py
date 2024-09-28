@@ -15,6 +15,6 @@ def convert_format(path_in: str, path_out: str, out_format: str):
 
 
 if __name__ == '__main__':
-    path_in = r'F:\GA_CSP\File\Candidates'
+    path_in = r'..\..\file\Candidates'
     path_out = r''
     convert_format(path_in, path_out, 'cif')

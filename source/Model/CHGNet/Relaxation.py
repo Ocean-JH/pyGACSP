@@ -33,8 +33,8 @@ def relax(fmax, steps, species, struc_dir, gen_num):
                     species[1], species[2], 'energy_per_atom', 'formation_energy_per_atom', 'convergence', 'fitness']
     pop_data = pd.DataFrame(columns=column_title)
 
-    pop_info_dir = r'F:\GA_CSP\File\Population_info'
-    output_dir = os.path.join(r'F:\GA_CSP\File\Structures', pop + '_relaxed')
+    pop_info_dir = r'..\..\file\Population_info'
+    output_dir = os.path.join(r'..\..\file\Structures', pop + '_relaxed')
     if not os.path.exists(output_dir):
         os.mkdir(output_dir)
 
@@ -49,7 +49,7 @@ def relax(fmax, steps, species, struc_dir, gen_num):
         relaxed_structure = result["final_structure"]
         relaxed_structure.to_file(os.path.join(output_dir, file), fmt='poscar')
 
-        pop_info = pd.read_csv(os.path.join(r'F:\GA_CSP\File\Population_info', '{}_pop-info.csv'.format(gen_num)))
+        pop_info = pd.read_csv(os.path.join(r'..\..\file\Population_info', '{}_pop-info.csv'.format(gen_num)))
         individual_data = pop_info.query("ID == '{}'".format(individual_id))
 
         relaxed_energy = result['trajectory'].energies[-1]
@@ -98,7 +98,7 @@ def relax(fmax, steps, species, struc_dir, gen_num):
 
 
 if __name__ == '__main__':
-    relax(0.05, 1000, ['Ge', 'Sb', 'Te'], r'F:\GA_CSP\File\Structures\0_population', 0)
+    relax(0.05, 1000, ['Ge', 'Sb', 'Te'], r'..\..\file\Structures\0_population', 0)
 
-    # file = r'F:\GA_CSP\File\Structures\0_population\0-18_from_random-POSCAR'
+    # file = r'..\..\file\Structures\0_population\0-18_from_random-POSCAR'
     # structure = Structure.from_file(file)

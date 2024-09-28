@@ -170,6 +170,6 @@ def extract_json_data(path):
 
 
 if __name__ == '__main__':
-    file_path = r'F:\Dataset\MPtrj_2022.9_full.json'
+    file_path = r'MPtrj_2022.9_full.json'
     for i in extract_json_data(file_path):
         print(i)

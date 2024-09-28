@@ -48,7 +48,7 @@ def tournament_selection(candidates, scale, tournament_size=5, tournament_rounds
 
 
 if __name__ == '__main__':
-    file_name = r'F:\GA_CSP\File\output.csv'
+    file_name = r'..\..\file\output.csv'
     df = pd.read_csv(file_name)
     selected_candidates = tournament_selection(df, scale=10)
-    selected_candidates.to_csv(r'F:\GA_CSP\File\next_gen_by_tournament.csv', index=False)
+    selected_candidates.to_csv(r'..\..\file\next_gen_by_tournament.csv', index=False)

@@ -244,7 +244,7 @@ def get_space_group_number(struc_path):
 
 
 if __name__ == '__main__':
-    file = r'F:\GA_CSP\File\Structures\ini_population_relaxed\0-69_from_mp-976122-POSCAR'
+    file = r'..\..\file\Structures\ini_population_relaxed\0-69_from_mp-976122-POSCAR'
     # structure = MyStructure(file)
     # sym = Symmetry(file)
     # print(structure.positions)

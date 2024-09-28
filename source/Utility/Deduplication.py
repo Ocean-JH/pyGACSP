@@ -54,9 +54,9 @@ def check_duplication(structure, pool_list):
 
 if __name__ == "__main__":
     pool = Pool()
-    indiv1_path = r'F:\Dataset\mp_seeds_GeSbTe\mp-1224415\CONTCAR'
-    indiv2_path = r'F:\Dataset\ElementSubstitution\3-2-6\mp-1003485-Mg2Mn3O6\CONTCAR'
-    # indiv3_path = r'C:\Users\Wangjq\Downloads\offspring-POSCAR'
+    indiv1_path = r'CONTCAR'
+    indiv2_path = r'CONTCAR'
+    # indiv3_path = r'POSCAR'
     indiv1 = Structure.from_file(indiv1_path)
     indiv2 = Structure.from_file(indiv2_path)
     # indiv3 = Structure.from_file(indiv3_path)

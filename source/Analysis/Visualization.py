@@ -67,7 +67,7 @@ def plot_convex_hull(df):
 
 
 if __name__ == '__main__':
-    data = pd.read_csv(r'F:\GA_CSP\File\Population_info\0_relaxed_pop-info.csv')
+    data = pd.read_csv(r'..\..\file\Population_info\0_relaxed_pop-info.csv')
     data = comp_triangle(['Ge', 'Sb', 'Te'], data)
     plot_convex_hull(data)
     # print(data)

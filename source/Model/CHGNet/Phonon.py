@@ -61,6 +61,6 @@ def plot_phonon_bs(candidates_path, phonon_path):
 
 
 if __name__ == '__main__':
-    in_path = r'F:\Research_Files\Structure_Search\Candidates\optimized_structure\USPEX'
-    out_path = r'F:\Research_Files\Structure_Search\Candidates\optimized_structure\USPEX_Phonon'
+    in_path = r'Candidates\optimized_structure\USPEX'
+    out_path = r'Candidates\optimized_structure\USPEX_Phonon'
     plot_phonon_bs(in_path, out_path)
